@@ -20,10 +20,10 @@ public class WebApplicationListener implements ServletContextListener {
 
         RandomDataGenerator generator = new RandomDataGenerator(); // 나이 : 20 ~ 30 랜덤 생성을 위한 클래스
         for(int i=1; i<=10; i++) {
-            String id = String.valueOf(i);
-            String name = "student" + i;
-            Gender gender = (i <= 5) ? Gender.M : Gender.F;
+            String id = "student" + i;
+            String name = "아카데미" + i;
             int age = generator.nextInt(20, 30);
+            Gender gender = (age % 2 == 0) ? Gender.M : Gender.F;
             LocalDateTime createdAt = LocalDateTime.now();
 
             Student student = new Student(id, name, gender, age, createdAt);
