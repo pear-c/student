@@ -7,10 +7,12 @@ import com.nhnacademy.student.repository.StudentRepository;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
+import jakarta.servlet.annotation.WebListener;
 import org.apache.commons.math3.random.RandomDataGenerator;
 
 import java.time.LocalDateTime;
 
+@WebListener
 public class WebApplicationListener implements ServletContextListener {
     // Application 구동 시 student1 ~ student10 학생 등록하기
     @Override
