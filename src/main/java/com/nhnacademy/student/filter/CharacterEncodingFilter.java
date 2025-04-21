@@ -2,11 +2,18 @@ package com.nhnacademy.student.filter;
 
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
+import jakarta.servlet.annotation.WebInitParam;
 
 import java.io.IOException;
 
 // UTF-8 인코딩 필터 설정
-@WebFilter(filterName = "characterEncodingFilter", urlPatterns = "/*")
+@WebFilter(
+        filterName = "characterEncodingFilter",
+        urlPatterns = "/*",
+        initParams = {
+                @WebInitParam(name = "encoding", value = "UTF-8")
+        }
+)
 public class CharacterEncodingFilter implements Filter {
     private String encoding;
 
