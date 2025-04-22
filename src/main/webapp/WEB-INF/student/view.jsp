@@ -44,7 +44,10 @@
 <div class="button-group">
     <a href="/student/list">리스트</a>
     <a href="/student/update?id=${student.id}">수정</a>
-    <button type="submit">삭제</button>
+    <form action="/student/delete" method="post" style="display: inline">
+        <input type="hidden" name="id" value="${student.id}" />
+        <button type="submit">삭제</button>
+    </form>
 </div>
 
 </body>
