@@ -31,10 +31,12 @@ public class StudentRegisterServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        //todo  /student/register.jsp forward 합니다.
-//        req.setAttribute("action", "/student/register");
-//        RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/student/register.jsp");
-//        rd.forward(req, resp);
+        /*
+        //todo  /student/register.jsp forward 합니다.
+        req.setAttribute("action", "/student/register");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/student/register.jsp");
+        rd.forward(req, resp);
+         */
         req.setAttribute("view", "/WEB-INF/student/register.jsp");
     }
 
