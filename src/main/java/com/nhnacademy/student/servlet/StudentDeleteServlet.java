@@ -29,14 +29,13 @@ public class StudentDeleteServlet extends HttpServlet {
         String id = req.getParameter("id");
 
         //todo get paramete :id, id가 존재하지 않을 경우 throw new RuntimeException("...")
-        if(Objects.isNull(id)) {
+        if(Objects.isNull(id) || id.isEmpty()) {
             throw new RuntimeException();
         }
 
         studentRepository.deleteById(id);
 
-        resp.sendRedirect("/student/list");
+//        resp.sendRedirect("/student/list");
+        req.setAttribute("view", "redirect:/student/list.jsp");
     }
-
-
 }
