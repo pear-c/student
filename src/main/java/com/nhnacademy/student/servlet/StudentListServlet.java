@@ -32,8 +32,9 @@ public class StudentListServlet extends HttpServlet {
         List<Student> studentList = studentRepository.getStudents();
         req.setAttribute("studentList", studentList);
 
-        // /student/list.jsp <- forward 하기
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/student/list.jsp");
-        rd.forward(req, resp);
+//        // /student/list.jsp <- forward 하기
+//        RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/student/list.jsp");
+//        rd.forward(req, resp);
+        req.setAttribute("view", "/WEB-INF/student/list.jsp");
     }
 }
