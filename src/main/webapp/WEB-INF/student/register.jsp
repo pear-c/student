@@ -31,8 +31,8 @@
         <tr>
             <th>성별</th>
             <td>
-                <input type="radio" name="gender" value="${student.gender}" required />남
-                <input type="radio" name="gender" value="${student.gender}" required />여
+                <input type="radio" name="gender" value="M" />남
+                <input type="radio" name="gender" value="F" />여
             </td>
         </tr>
         <tr>
