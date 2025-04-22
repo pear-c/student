@@ -39,9 +39,13 @@
     </tbody>
 </table>
 
+<br>
 
-<a href="/student/list">리스트</a>
-<a href="${update_link}">수정</a>
+<div class="button-group">
+    <a href="/student/list">리스트</a>
+    <a href="/student/update?id=${student.id}">수정</a>
+    <button type="submit">삭제</button>
+</div>
 
 </body>
 </html>
