@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 
+import static jakarta.servlet.RequestDispatcher.*;
+
 @Slf4j
 @WebServlet(name = "frontServlet", urlPatterns = "*.do")
 public class FrontServlet extends HttpServlet {
@@ -41,8 +43,13 @@ public class FrontServlet extends HttpServlet {
             }
         } catch (Exception ex) {
             // 에러가 발생한 경우는 error page로 지정된 `/error.jsp`에게 view 처리를 위임.
-            req.setAttribute("exception", ex);
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/error.jsp");
+            req.setAttribute(RequestDispatcher.ERROR_STATUS_CODE, HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            req.setAttribute(RequestDispatcher.ERROR_EXCEPTION_TYPE, ex.getClass());
+            req.setAttribute(RequestDispatcher.ERROR_MESSAGE, ex.getMessage());
+            req.setAttribute(RequestDispatcher.ERROR_EXCEPTION, ex);
+            req.setAttribute(RequestDispatcher.ERROR_REQUEST_URI, req.getRequestURI());
+
+            RequestDispatcher rd = req.getRequestDispatcher("/error.do");
             rd.forward(req, resp);
         }
     }
@@ -50,8 +57,17 @@ public class FrontServlet extends HttpServlet {
     // 요청 URL에 따라 실제 요청을 처리할 Servlet 결정.
     private String resolveServlet(String servletPath) {
         String processingServlet = null;
+
         if("/student/list.do".equals(servletPath)) {
             processingServlet = "/student/list";
+        } else if("/student/view.do".equals(servletPath)) {
+            processingServlet = "/student/view";
+        } else if("/student/register.do".equals(servletPath)) {
+            processingServlet = "/student/register";
+        } else if("/student/update.do".equals(servletPath)) {
+            processingServlet = "/student/update";
+        } else if("/student/delete.do".equals(servletPath)) {
+            processingServlet = "/student/delete";
         }
 
         return processingServlet;

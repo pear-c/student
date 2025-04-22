@@ -43,7 +43,7 @@
 
 <div class="button-group">
     <a href="/student/list.do">리스트</a>
-    <c:url var="udate_link" value="/student/update.do">
+    <c:url var="update_link" value="/student/update.do">
         <c:param name="id" value="${student.id}" />
     </c:url>
     <a href="${update_link}">수정</a>

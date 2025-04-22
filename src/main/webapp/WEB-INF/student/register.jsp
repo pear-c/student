@@ -35,9 +35,9 @@
             <th>성별</th>
             <td>
                 <input type="radio" name="gender" value="M"
-                       <c:if test="${student.gender} == 'M'}">checked</c:if>/>남
+                       <c:if test="${student.gender == 'M'}">checked</c:if>/>남
                 <input type="radio" name="gender" value="F"
-                       <c:if test="${student.gender} == 'F'}">checked</c:if>/>여
+                       <c:if test="${student.gender == 'F'}">checked</c:if>/>여
             </td>
         </tr>
         <tr>
