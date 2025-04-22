@@ -29,7 +29,7 @@
             <td>${student.gender}</td>
             <td>${student.age}</td>
             <td>
-                조회
+                <a href="/student/view?id=${student.id}">조회</a>
             </td>
         </tr>
 
