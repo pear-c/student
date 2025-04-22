@@ -29,19 +29,21 @@ public class StudentViewServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String id = req.getParameter("id");
 
+        String id = req.getParameter("id");
         //todo id null check
         if (Objects.isNull(id) || id.isEmpty()) {
-            throw new IllegalStateException();
+            throw new RuntimeException("parameter [id] : null");
         }
 
         //todo student 조회
         Student student = studentRepository.getStudentById(id);
+        log.error("student:{}", student);
         req.setAttribute("student", student);
 
-        //todo /student/view.jsp <-- forward
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/student/view.jsp");
-        rd.forward(req, resp);
+//        //todo /student/view.jsp <-- forward
+//        RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/student/view.jsp");
+//        rd.forward(req, resp);
+        req.setAttribute("view", "/WEB-INF/student/view.jsp");
     }
 }
