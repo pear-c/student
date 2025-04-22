@@ -38,13 +38,13 @@ public class StudentRegisterServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //todo null check
-        String id = req.getAttribute("id").toString();
-        String name = req.getAttribute("name").toString();
-        Gender gender = (Gender) req.getAttribute("gender");
-        int age = (int) req.getAttribute("age");
+        String id = req.getParameter("id");
+        String name = req.getParameter("name");
+        Gender gender = Gender.valueOf(req.getParameter("gender"));
+        int age = Integer.parseInt(req.getParameter("age"));
         LocalDateTime createdAt = LocalDateTime.now();
 
+        //todo null check
         if(Objects.isNull(id) || Objects.isNull(name) || Objects.isNull(gender) || Objects.isNull(age)) {
             // 에러 메시지 구현 필요
             return;
@@ -59,6 +59,7 @@ public class StudentRegisterServlet extends HttpServlet {
         studentRepository.save(student);
 
         //todo redirect /student/view?id=student1
-        resp.sendRedirect("/student/view?id=student1");
+
+        resp.sendRedirect("/student/list");
     }
 }
