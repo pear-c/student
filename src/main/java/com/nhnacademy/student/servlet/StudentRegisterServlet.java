@@ -32,6 +32,7 @@ public class StudentRegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //todo  /student/register.jsp forward 합니다.
+        req.setAttribute("action", "/student/register");
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/student/register.jsp");
         rd.forward(req, resp);
     }
@@ -59,7 +60,6 @@ public class StudentRegisterServlet extends HttpServlet {
         studentRepository.save(student);
 
         //todo redirect /student/view?id=student1
-
-        resp.sendRedirect("/student/list");
+        resp.sendRedirect("/student/view?id=" + id);
     }
 }
