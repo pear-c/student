@@ -31,35 +31,39 @@ public class StudentRegisterServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //todo  /student/register.jsp forward 합니다.
-        req.setAttribute("action", "/student/register");
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/student/register.jsp");
-        rd.forward(req, resp);
+//        //todo  /student/register.jsp forward 합니다.
+//        req.setAttribute("action", "/student/register");
+//        RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/student/register.jsp");
+//        rd.forward(req, resp);
+        req.setAttribute("view", "/WEB-INF/student/register.jsp");
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
         String name = req.getParameter("name");
-        Gender gender = Gender.valueOf(req.getParameter("gender"));
-        int age = Integer.parseInt(req.getParameter("age"));
-        LocalDateTime createdAt = LocalDateTime.now();
+
+        Gender gender = null;
+        if(Objects.nonNull(req.getParameter("gender"))) {
+            gender = Gender.valueOf(req.getParameter("gender"));
+        }
+
+        Integer age = null;
+        if(Objects.nonNull(req.getParameter("age"))) {
+            age = Integer.parseInt(req.getParameter("age"));
+        }
 
         //todo null check
         if(Objects.isNull(id) || Objects.isNull(name) || Objects.isNull(gender) || Objects.isNull(age)) {
-            // 에러 메시지 구현 필요
-            return;
-        }
-        if(id.isEmpty() || name.isEmpty()) {
-            // 에러 메시지 구현 필요
-            return;
+            throw new RuntimeException("id, name, gender, age 확인해주세요!");
         }
 
         //todo save 구현
-        Student student = new Student(id, name, gender, age, createdAt);
+        Student student = new Student(id, name, gender, age, LocalDateTime.now());
         studentRepository.save(student);
 
-        //todo redirect /student/view?id=student1
-        resp.sendRedirect("/student/view?id=" + id);
+//        //todo redirect /student/view?id=student1
+//        resp.sendRedirect("/student/view?id=" + id);
+        req.setAttribute("view", "redirect:/student/view.do?id=" + id);
     }
 }
