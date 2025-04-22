@@ -42,13 +42,15 @@
 <br>
 
 <div class="button-group">
-    <a href="/student/list">리스트</a>
-    <a href="/student/update?id=${student.id}">수정</a>
-    <form action="/student/delete" method="post" style="display: inline">
+    <a href="/student/list.do">리스트</a>
+    <c:url var="udate_link" value="/student/update.do">
+        <c:param name="id" value="${student.id}" />
+    </c:url>
+    <a href="${update_link}">수정</a>
+    <form method="post" action="/student/delete.do">
         <input type="hidden" name="id" value="${student.id}" />
         <button type="submit">삭제</button>
     </form>
 </div>
-
 </body>
 </html>

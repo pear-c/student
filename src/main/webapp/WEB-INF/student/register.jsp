@@ -9,6 +9,17 @@
 </head>
 
 <body>
+<!-- todo /register -> /register.do 변경  -->
+<!-- todo /update -> /update.do 변경  -->
+<c:choose>
+    <c:when test="${empty student}">
+        <c:set var="action" value="/student/register.do" />
+    </c:when>
+    <c:otherwise>
+        <c:set var="action" value="/student/update.do" />
+    </c:otherwise>
+</c:choose>
+
 <form method="post" action="${action}">
     <table>
         <tbody>
