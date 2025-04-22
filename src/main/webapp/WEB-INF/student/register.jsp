@@ -9,21 +9,13 @@
 </head>
 
 <body>
-<!-- todo action 주소 설정
-    //등록
-        action = /student/register
-    //수정
-        action = /student/update
--->
-
 <form method="post" action="${action}">
     <table>
         <tbody>
         <tr>
             <th>ID</th>
-            <td><input type="text" name="id" value="${student.id}" required /></td>
+            <td><input type="text" name="id" value="${student.id}" <c:if test="${not empty student}">readonly</c:if> required /></td>
         </tr>
-        <!-- todo input 구현 -->
         <tr>
             <th>이름</th>
             <td><input type="text" name="name" value="${student.name}" required /></td>
@@ -31,8 +23,10 @@
         <tr>
             <th>성별</th>
             <td>
-                <input type="radio" name="gender" value="M" />남
-                <input type="radio" name="gender" value="F" />여
+                <input type="radio" name="gender" value="M"
+                       <c:if test="${student.gender} == 'M'}">checked</c:if>/>남
+                <input type="radio" name="gender" value="F"
+                       <c:if test="${student.gender} == 'F'}">checked</c:if>/>여
             </td>
         </tr>
         <tr>
