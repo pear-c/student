@@ -1,8 +1,10 @@
 package com.nhnacademy.student;
 
+import com.nhnacademy.day04.factory.ControllerFactory;
 import com.nhnacademy.student.controller.*;
 import com.nhnacademy.student.controller.impl.*;
 import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -18,13 +20,13 @@ import static jakarta.servlet.RequestDispatcher.*;
 @WebServlet(name = "frontServlet", urlPatterns = "*.do")
 public class FrontServlet extends HttpServlet {
     private static final String REDIRECT_PREFIX = "redirect:";
-//    private ControllerFactory controllerFactory;
+    private ControllerFactory controllerFactory;
 
-//    @Override
-//    public void init(ServletConfig config) throws ServletException {
-//        super.init(config);
-//        controllerFactory = (ControllerFactory) config.getServletContext().getAttribute(ControllerFactory.CONTROLLER_FACTORY_NAME)
-//    }
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        controllerFactory = (ControllerFactory) config.getServletContext().getAttribute(ControllerFactory.CONTROLLER_FACTORY_NAME);
+    }
 
 
     @Override
@@ -38,12 +40,13 @@ public class FrontServlet extends HttpServlet {
             String servletPath = req.getServletPath();
             String method = req.getMethod();
 
-            Command command = resolveCommand(servletPath, method);
+            // day03 - 01. Command 패턴 실습부분
+//            Command command = resolveCommand(servletPath, method);
+            Command command = (Command) controllerFactory.getBean(method, servletPath);
             String view = command.execute(req, resp);
 
-//            Command command = (Command) controllerFactory.getBean(method, servletPath);
+            // Stopwatch 프록시패턴 연습
 //            String view = new StopwatchControllerProxy(command).execute(req, resp);
-
 
             /* day03 - 01.MVC 실습부분
             // 실제 요청 처리할 Servlet 결정.

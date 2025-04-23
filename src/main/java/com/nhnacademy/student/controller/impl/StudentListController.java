@@ -1,5 +1,6 @@
 package com.nhnacademy.student.controller.impl;
 
+import com.nhnacademy.day04.annotation.RequestMapping;
 import com.nhnacademy.student.controller.Command;
 import com.nhnacademy.student.entity.Student;
 import com.nhnacademy.student.repository.StudentRepository;
@@ -10,8 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.List;
 
 @Slf4j
-//@Stopwatch
-//@RequestMapping(value = "/student/list.do", method = RequestMapping.Method.GET)
+@RequestMapping(value = "/student/list.do", method = RequestMapping.Method.GET)
 public class StudentListController implements Command {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) {

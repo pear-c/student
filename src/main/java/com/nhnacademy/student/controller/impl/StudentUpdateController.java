@@ -1,5 +1,6 @@
 package com.nhnacademy.student.controller.impl;
 
+import com.nhnacademy.day04.annotation.RequestMapping;
 import com.nhnacademy.student.controller.Command;
 import com.nhnacademy.student.entity.Gender;
 import com.nhnacademy.student.entity.Student;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Slf4j
+@RequestMapping(value = "/student/update.do", method = RequestMapping.Method.POST)
 public class StudentUpdateController implements Command {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) {

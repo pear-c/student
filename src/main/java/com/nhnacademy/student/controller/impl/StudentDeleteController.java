@@ -1,10 +1,12 @@
 package com.nhnacademy.student.controller.impl;
 
+import com.nhnacademy.day04.annotation.RequestMapping;
 import com.nhnacademy.student.controller.Command;
 import com.nhnacademy.student.repository.StudentRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+@RequestMapping(value = "/student/delete.do", method = RequestMapping.Method.POST)
 public class StudentDeleteController implements Command {
 
     @Override
