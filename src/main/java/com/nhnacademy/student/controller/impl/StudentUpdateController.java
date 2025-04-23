@@ -1,15 +1,18 @@
-package com.nhnacademy.student.controller;
+package com.nhnacademy.student.controller.impl;
 
+import com.nhnacademy.student.controller.Command;
 import com.nhnacademy.student.entity.Gender;
 import com.nhnacademy.student.entity.Student;
 import com.nhnacademy.student.repository.StudentRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class StudentUpdateController implements Command{
+@Slf4j
+public class StudentUpdateController implements Command {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) {
         StudentRepository studentRepository = (StudentRepository) req.getServletContext().getAttribute("studentRepository");

@@ -1,6 +1,7 @@
-package com.nhnacademy.student.repository;
+package com.nhnacademy.student.repository.impl;
 
 import com.nhnacademy.student.entity.Student;
+import com.nhnacademy.student.repository.StudentRepository;
 
 import java.util.LinkedList;
 import java.util.List;

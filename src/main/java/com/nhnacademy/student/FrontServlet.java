@@ -1,6 +1,7 @@
 package com.nhnacademy.student;
 
 import com.nhnacademy.student.controller.*;
+import com.nhnacademy.student.controller.impl.*;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -17,6 +18,14 @@ import static jakarta.servlet.RequestDispatcher.*;
 @WebServlet(name = "frontServlet", urlPatterns = "*.do")
 public class FrontServlet extends HttpServlet {
     private static final String REDIRECT_PREFIX = "redirect:";
+//    private ControllerFactory controllerFactory;
+
+//    @Override
+//    public void init(ServletConfig config) throws ServletException {
+//        super.init(config);
+//        controllerFactory = (ControllerFactory) config.getServletContext().getAttribute(ControllerFactory.CONTROLLER_FACTORY_NAME)
+//    }
+
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,12 +39,16 @@ public class FrontServlet extends HttpServlet {
             String method = req.getMethod();
 
             Command command = resolveCommand(servletPath, method);
-            log.info("servletPath={}, method={}, command={}", servletPath, method, command);
             String view = command.execute(req, resp);
+
+//            Command command = (Command) controllerFactory.getBean(method, servletPath);
+//            String view = new StopwatchControllerProxy(command).execute(req, resp);
+
 
             /* day03 - 01.MVC 실습부분
             // 실제 요청 처리할 Servlet 결정.
-            String servletPah = resolveServlet(req.getServletPath());
+            String servletPah = resolveServlet(req.getServletPath());'
+
             RequestDispatcher rd = req.getRequestDispatcher(servletPah);
             rd.include(req, resp);
             // 실제 요청을 처리한 Servlet이 `view`라는 request 속성 값으로 view를 전달해 줌.
@@ -79,7 +92,6 @@ public class FrontServlet extends HttpServlet {
             command = new StudentRegisterFormController();
         }else if("/student/register.do".equals(servletPath) && "POST".equalsIgnoreCase(method) ){
             command = new StudentRegisterController();
-
         }else if("/error.do".equals(servletPath)){
             command = new ErrorController();
         }

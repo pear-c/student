@@ -1,12 +1,12 @@
-package com.nhnacademy.student.controller;
+package com.nhnacademy.student.controller.impl;
 
-import jakarta.servlet.RequestDispatcher;
+import com.nhnacademy.student.controller.Command;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import static jakarta.servlet.RequestDispatcher.*;
 
-public class ErrorController implements Command{
+public class ErrorController implements Command {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) {
         req.setAttribute("status_code", req.getAttribute(ERROR_STATUS_CODE));

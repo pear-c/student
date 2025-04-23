@@ -2,9 +2,9 @@ package com.nhnacademy.student.listener;
 
 import com.nhnacademy.student.entity.Gender;
 import com.nhnacademy.student.entity.Student;
-import com.nhnacademy.student.repository.JsonStudentRepository;
-import com.nhnacademy.student.repository.MapStudentRepository;
+import com.nhnacademy.student.repository.impl.JsonStudentRepository;
 import com.nhnacademy.student.repository.StudentRepository;
+import com.nhnacademy.student.repository.impl.MapStudentRepository;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
@@ -19,8 +19,8 @@ public class WebApplicationListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         ServletContext context = sce.getServletContext();
-//        StudentRepository studentRepository = new MapStudentRepository();
-        StudentRepository studentRepository = new JsonStudentRepository();
+        StudentRepository studentRepository = new MapStudentRepository();
+//        StudentRepository studentRepository = new JsonStudentRepository();
 
         RandomDataGenerator generator = new RandomDataGenerator(); // 나이 : 20 ~ 30 랜덤 생성을 위한 클래스
         for(int i=1; i<=10; i++) {

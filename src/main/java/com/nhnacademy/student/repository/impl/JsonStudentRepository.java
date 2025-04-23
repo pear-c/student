@@ -1,19 +1,21 @@
-package com.nhnacademy.student.repository;
+package com.nhnacademy.student.repository.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.nhnacademy.student.entity.Student;
+import com.nhnacademy.student.repository.StudentRepository;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 
-public class JsonStudentRepository implements StudentRepository{
+public class JsonStudentRepository implements StudentRepository {
 
     private final ObjectMapper objectMapper;
-    private static final String JSON_FILE_PATH="/Users/nhn/IdeaProjects/servlet:jsp/student/src/main/json/student.json";
+    private static final String JSON_FILE_PATH="/Users/pear_c/IntelliJProjects/student/src/main/json/student.json";
 
     public JsonStudentRepository() {
         objectMapper = new ObjectMapper();
@@ -28,7 +30,7 @@ public class JsonStudentRepository implements StudentRepository{
 
     private synchronized List<Student> readJsonFile() {
         //todo json 파일이 존재하지 않다면 비어있는 List<Student> 리턴
-        List<Student> students = null;
+        List<Student> students = new ArrayList<>();
         File file = new File(JSON_FILE_PATH);
         if(!file.exists()) {
             return students;
