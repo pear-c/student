@@ -9,11 +9,35 @@ public class Student {
     private int age;                  // 나이
     private LocalDateTime createdAt;  // 생성일
 
+    public Student() {
+
+    }
+
     public Student(String id, String name, Gender gender, int age, LocalDateTime createdAt) {
         this.id = id;
         this.name = name;
         this.gender = gender;
         this.age = age;
+        this.createdAt = createdAt;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 

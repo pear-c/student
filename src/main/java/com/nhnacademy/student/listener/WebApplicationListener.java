@@ -15,12 +15,11 @@ import java.time.LocalDateTime;
 
 @WebListener
 public class WebApplicationListener implements ServletContextListener {
-    // Application 구동 시 student1 ~ student10 학생 등록하기
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         ServletContext context = sce.getServletContext();
-        StudentRepository studentRepository = new MapStudentRepository();
-//        StudentRepository studentRepository = new JsonStudentRepository();
+//        StudentRepository studentRepository = new MapStudentRepository();
+        StudentRepository studentRepository = new JsonStudentRepository();
 
         RandomDataGenerator generator = new RandomDataGenerator(); // 나이 : 20 ~ 30 랜덤 생성을 위한 클래스
         for(int i=1; i<=10; i++) {
